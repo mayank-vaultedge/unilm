@@ -56,7 +56,7 @@ class BiaffineAttention(torch.nn.Module):
 class REDecoder(nn.Module):
     def __init__(self, config):
         super().__init__()
-        self.entity_emb = nn.Embedding(3, config.hidden_size, scale_grad_by_freq=True)
+        self.entity_emb = nn.Embedding(2, config.hidden_size, scale_grad_by_freq=True)
         projection = nn.Sequential(
             nn.Linear(config.hidden_size * 2, config.hidden_size),
             nn.ReLU(),
@@ -81,7 +81,7 @@ class REDecoder(nn.Module):
                     (i, j)
                     for i in range(len(entities[b]["label"]))
                     for j in range(len(entities[b]["label"]))
-                    if entities[b]["label"][i] == 1 and entities[b]["label"][j] == 2
+                    if entities[b]["label"][i] == 0 and entities[b]["label"][j] == 1
                 ]
             )
             if len(all_possible_relations) == 0:
@@ -102,9 +102,11 @@ class REDecoder(nn.Module):
 
     def get_predicted_relations(self, logits, relations, entities):
         pred_relations = []
+        for_conf = torch.nn.functional.softmax(logits)
         for i, pred_label in enumerate(logits.argmax(-1)):
             if pred_label != 1:
                 continue
+            conf = for_conf[i].max()
             rel = {}
             rel["head_id"] = relations["head"][i]
             rel["head"] = (entities["start"][rel["head_id"]], entities["end"][rel["head_id"]])
@@ -114,6 +116,7 @@ class REDecoder(nn.Module):
             rel["tail"] = (entities["start"][rel["tail_id"]], entities["end"][rel["tail_id"]])
             rel["tail_type"] = entities["label"][rel["tail_id"]]
             rel["type"] = 1
+            rel["conf"] = conf
             pred_relations.append(rel)
         return pred_relations
 

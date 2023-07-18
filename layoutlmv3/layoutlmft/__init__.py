@@ -1,5 +1,5 @@
 from .models import (
-    LayoutLMv3Config,
+    LayoutLMv3UnilmConfig,
     LayoutLMv3ForTokenClassification,
     LayoutLMv3ForQuestionAnswering,
     LayoutLMv3ForSequenceClassification,

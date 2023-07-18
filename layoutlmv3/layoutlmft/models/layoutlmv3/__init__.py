@@ -12,8 +12,6 @@ from .modeling_layoutlmv3 import (
 from .tokenization_layoutlmv3 import LayoutLMv3Tokenizer
 from .tokenization_layoutlmv3_fast import LayoutLMv3TokenizerFast
 
-LayoutLMv3Config=LayoutLMv3UnilmConfig
-
 
 AutoConfig.register("layoutlmv3_unilm", LayoutLMv3UnilmConfig)
 AutoModel.register(LayoutLMv3UnilmConfig, LayoutLMv3Model)

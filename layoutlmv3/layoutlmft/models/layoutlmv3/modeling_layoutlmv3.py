@@ -40,7 +40,7 @@ from transformers.models.roberta.modeling_roberta import (
 )
 from transformers.utils import logging
 
-from .configuration_layoutlmv3 import LayoutLMv3UnilmConfig as LayoutLMv3Config
+from .configuration_layoutlmv3 import LayoutLMv3Config
 from timm.models.layers import to_2tuple
 
 

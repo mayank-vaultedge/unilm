@@ -11,7 +11,7 @@ from datasets import ClassLabel, load_dataset, load_metric
 
 import transformers
 
-from layoutlmft.data import DataCollatorForKeyValueExtraction
+from layoutlmft_lmv3.data import DataCollatorForKeyValueExtraction
 from transformers import (
     AutoConfig,
     AutoModelForTokenClassification,
@@ -29,7 +29,7 @@ from transformers.utils import check_min_version
 check_min_version("4.5.0")
 
 logger = logging.getLogger(__name__)
-from layoutlmft.data.image_utils import RandomResizedCropAndInterpolationWithTwoPic, pil_loader, Compose
+from layoutlmft_lmv3.data.image_utils import RandomResizedCropAndInterpolationWithTwoPic, pil_loader, Compose
 
 from timm.data.constants import \
     IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD, IMAGENET_INCEPTION_MEAN, IMAGENET_INCEPTION_STD
@@ -204,10 +204,10 @@ def main():
 
     if data_args.dataset_name == 'funsd':
         # datasets = load_dataset("nielsr/funsd")
-        import layoutlmft.data.funsd
+        import layoutlmft_lmv3.data.funsd
         datasets = load_dataset(os.path.abspath(layoutlmft.data.funsd.__file__), cache_dir=model_args.cache_dir)
     elif data_args.dataset_name == 'cord':
-        import layoutlmft.data.cord
+        import layoutlmft_lmv3.data.cord
         datasets = load_dataset(os.path.abspath(layoutlmft.data.cord.__file__), cache_dir=model_args.cache_dir)
     else:
         raise NotImplementedError()

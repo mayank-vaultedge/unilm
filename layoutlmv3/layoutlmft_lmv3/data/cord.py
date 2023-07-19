@@ -7,7 +7,7 @@ import json
 import os
 from pathlib import Path
 import datasets
-from layoutlmft.data.image_utils import load_image, normalize_bbox
+from layoutlmft_lmv3.data.image_utils import load_image, normalize_bbox
 logger = datasets.logging.get_logger(__name__)
 _CITATION = """\
 @article{park2019cord,

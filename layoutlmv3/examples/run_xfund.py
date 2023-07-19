@@ -11,8 +11,8 @@ from datasets import ClassLabel, load_dataset, load_metric
 
 import transformers
 
-from layoutlmft.data import DataCollatorForKeyValueExtraction
-from layoutlmft.data.xfund import xfund_dataset, XFund_label2ids
+from layoutlmft_lmv3.data import DataCollatorForKeyValueExtraction
+from layoutlmft_lmv3.data.xfund import xfund_dataset, XFund_label2ids
 from transformers import (
     AutoConfig,
     AutoModelForTokenClassification,

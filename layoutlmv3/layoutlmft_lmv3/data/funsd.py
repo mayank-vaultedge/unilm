@@ -7,7 +7,7 @@ import os
 
 import datasets
 
-from layoutlmft.data.image_utils import load_image, normalize_bbox
+from layoutlmft_lmv3.data.image_utils import load_image, normalize_bbox
 
 
 logger = datasets.logging.get_logger(__name__)
